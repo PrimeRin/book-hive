@@ -7,7 +7,9 @@ if (!isset($_SESSION['librarian_id'])) {
     header("Location: login");
     exit();
 }
-// <a href="/logoutController">Logout</a> 
+
+// Get the 'page' parameter from the URL, default to 'graph' if not provided
+$page = isset($_GET['page']) ? $_GET['page'] : 'graph';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +27,23 @@ if (!isset($_SESSION['librarian_id'])) {
             <header class="welcome-header">
                 <h1>Hi, Welcome back</h1>
             </header>
-            <?php include 'graph.php'; ?>
+            
+            <?php 
+            switch ($page) {
+                case 'graph':
+                    include 'graph.php';
+                    break;
+                case 'users':
+                    include 'users.php';
+                    break;
+                case 'books':
+                    include 'books.php';
+                    break;
+                default:
+                    include 'graph.php';
+                    break;
+            }
+            ?>
         </main>
     </div>
 </body>

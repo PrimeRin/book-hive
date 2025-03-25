@@ -1,5 +1,5 @@
 <?php
-$request = $_SERVER['REQUEST_URI'];
+$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $viewDir = '/src/views/';
 $controllerDir = '/src/controllers/';
 
